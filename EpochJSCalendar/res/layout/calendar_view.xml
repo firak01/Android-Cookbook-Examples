@@ -15,11 +15,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="To WebView"/>
-        
-    	<Button android:id="@+id/calendarDateButton"
+
+        <Button
+            android:id="@+id/calendarDateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calendar Date"/>
+            android:text="Calendar Date" />
+
     </LinearLayout>
     
     <WebView android:id="@+id/webview"
