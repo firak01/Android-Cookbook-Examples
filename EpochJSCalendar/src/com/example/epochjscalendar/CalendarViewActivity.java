@@ -58,22 +58,23 @@ public class CalendarViewActivity extends Activity {
                 webview = (WebView) this.findViewById(R.id.webview);
 
                 // Get the settings
-                WebSettings settings = webview.getSettings();
+                //WebSettings settings = webview.getSettings();
 
                 // Enable JavaScript
-                settings.setJavaScriptEnabled(true);
+                //settings.setJavaScriptEnabled(true);
 
                 // Enable ZoomControls visibility
-                settings.setSupportZoom(true);
+                //settings.setSupportZoom(true);
 
                 // Add JavaScript Interface
-                webview.addJavascriptInterface(new MyJavaScriptInterface(), "android");
+                //webview.addJavascriptInterface(new MyJavaScriptInterface(), "android");
                 
                 // Set the Chrome Client
-                webview.setWebChromeClient(new MyWebChromeClient());
+                //webview.setWebChromeClient(new MyWebChromeClient());
 
                 // Load the URL of the HTML file
-                webview.loadUrl("file:///android_asset/calendarview.html");
+                //webview.loadUrl("file:///android_asset/calendarview.html");
+                webview.loadUrl("file:///android_asset/calendarview_missingTest_fgl.html");
 
             }
 
