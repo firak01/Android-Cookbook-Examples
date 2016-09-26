@@ -64,7 +64,14 @@
                              * Call Android JavaScript->Java bridge setting a 
                              * Java-field variable
                              */
-                            window.android.setSelectedDate( date );
+                             
+                            //window.android.setSelectedDate( date );
+                            //führt zu: 09-25 06:53:12.212: E/Web Console(1631): Uncaught Error: Error calling method on NPObject. at file:///android_asset/calendarview.html:67
+                            //der Fehler wird angeblich geworfen, wenn die Argumente des Funktionsaufrufs nicht korrekt sind
+                            //und tatsächlich heisst die Funktion mit date - Argument 
+                            //window.android.setSelectedJsDate( date );
+                            //darum mal dateStr - als Argument versuchen.
+							window.android.setSelectedDate( dateStr ); //FGL: Erfolg
                             window.android.setCalendarButton( date );
                         }
                 }

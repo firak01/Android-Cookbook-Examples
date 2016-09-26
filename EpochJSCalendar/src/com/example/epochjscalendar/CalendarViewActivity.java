@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -62,7 +63,7 @@ public class CalendarViewActivity extends Activity {
 
                 // Enable JavaScript
                 settings.setJavaScriptEnabled(true);
-
+                
                 // Enable ZoomControls visibility
                 settings.setSupportZoom(true);
 
@@ -71,7 +72,7 @@ public class CalendarViewActivity extends Activity {
                 
                 // Set the Chrome Client
                 webview.setWebChromeClient(new MyWebChromeClient());
-
+                
                 // Load the URL of the HTML file
                 webview.loadUrl("file:///android_asset/calendarview.html");
                 //webview.loadUrl("file:///android_asset/calendarview_missingTest_fgl.html");
@@ -115,8 +116,9 @@ public class CalendarViewActivity extends Activity {
                         // EMPTY;
                     }
 
+               
                 public void onDayClick()
-                    {
+                    {                	
                         jsHandler.post(new Runnable()
                             {
                                 public void run()
@@ -133,11 +135,16 @@ public class CalendarViewActivity extends Activity {
                  * 
                  * @param dateStr
                  */
+                @JavascriptInterface
                 public void setSelectedDate(String dateStr)
                     {
+                	//von FGL ergänzt 20160925
+                	//@JavascriptInterface is introduced in JellyBean. 
+                	//You need to set the Project Build Target to API Level 17 From Eclipse IDE, 
+                	//go to Project->Properties. Select Android and set the target The APK will work on older versions of android.
                         Toast.makeText(getApplicationContext(), dateStr, 
                             Toast.LENGTH_SHORT).show();
-                        Log.d(tag, "User Selected Date: JavaScript -&gt; Java : " + dateStr);
+                        Log.d(tag, "User Selected Date: JavaScript -&gt; Java : " + dateStr);//FGL Erfolg: Dies wird in LogCat ausgegeben
 
                         // Set the User Selected Calendar date
                         setJsSelectedDate(new Date(Date.parse(dateStr)));
@@ -152,6 +159,36 @@ public class CalendarViewActivity extends Activity {
                     {
                         return jsSelectedDate;
                     }
+                
+                @JavascriptInterface
+                public void setCalendarButton(Date selectedCalDate) {
+                	//FGL: in diese Interfaceklasse aufgenommen, da sie mit window.android aus der HTML Seite aufgerufen wird.
+                    Log.d(tag, "setCalendarButton: " + jsHandler.obtainMessage().toString());
+                    if(calendarDateButton==null){
+                    	Log.d(tag, "calendarDateButton is null");
+                    }else{
+                    	Log.d(tag, "calendarDateButton not null");   
+                    	
+                    	if(selectedCalDate==null){
+                        	Log.d(tag, "selectedCalDate is null");
+                        	
+                        	Date objDate = getJsSelectedDate();
+                        	if(objDate==null){
+                        		Log.d(tag, "auch getJsSelectedDate() is null");
+                        	}else{
+                        		Log.d(tag, "getJsSelectedDate() not null");
+                        		//calendarDateButton.setText(DateUtils.convertDateToSectionHeaderFormat(objDate.getTime()));
+                        		calendarDateButton.setText("TEST");
+                        	}                        	 
+                        }else{
+                        	Log.d(tag, "selectedCalDate not null");
+                        	
+                        	 calendarDateButton.setText(
+                                     DateUtils.convertDateToSectionHeaderFormat(selectedCalDate.getTime()));
+                        }
+                    }
+                                                          
+                }
             }
 
         /**
