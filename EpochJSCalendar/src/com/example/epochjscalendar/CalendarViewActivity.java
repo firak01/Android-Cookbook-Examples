@@ -177,8 +177,11 @@ public class CalendarViewActivity extends Activity {
                         		Log.d(tag, "auch getJsSelectedDate() is null");
                         	}else{
                         		Log.d(tag, "getJsSelectedDate() not null");
-                        		//calendarDateButton.setText(DateUtils.convertDateToSectionHeaderFormat(objDate.getTime()));
-                        		calendarDateButton.setText("TEST");
+                        		//FGL: Achtung: Bei Geräten mit kleiner Auflöscunt erscheint der Button nicht.
+                        		//     Dann gibt es deswegen eine NullPointer Exception.
+                        		//calendarDateButton.setText("TEST");
+                        		calendarDateButton.setText(DateUtils.convertDateToSectionHeaderFormat(objDate.getTime()));
+                        		
                         	}                        	 
                         }else{
                         	Log.d(tag, "selectedCalDate not null");
