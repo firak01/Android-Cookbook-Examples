@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class CalendarViewActivity extends Activity {
 
         private static final String tag = "CalendarViewActivity";
+        protected static final String MESSAGE_DATE="dateSelected";
         private ImageView calendarToJournalButton;
         private Button calendarDateButton;
         private WebView webview;
@@ -48,6 +49,10 @@ public class CalendarViewActivity extends Activity {
                                 Intent intent = 
                                     new Intent(getApplicationContext(), 
                                         CreateEntryScreen.class);
+                                //CalDate muss gesetzt werden bei der Auswahl im JavaScript
+                                String message = getSelectedCalDate().toLocaleString();                                
+                                intent.putExtra(CalendarViewActivity.MESSAGE_DATE, message);
+                                
                                 startActivity(intent);
                             }
                     });
@@ -154,6 +159,7 @@ public class CalendarViewActivity extends Activity {
                 private void setJsSelectedDate(Date userSelectedDate)
                     {
                         jsSelectedDate = userSelectedDate;
+                        setSelectedCalDate(userSelectedDate);//FGL: DAMIT WIRD DAS DATUM DER HAUPTACTIVITY ÜBERGEBEN
                     }
                 public Date getJsSelectedDate()
                     {

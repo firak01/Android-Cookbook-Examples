@@ -23,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!--  FGL: Eine Activity ergaenzt, die im Beispiel beim Clicken auf eine ImageView geäffnet werden soll -->
+         <activity
+            android:name=".CreateEntryScreen"
+            android:label="@string/title_activity_entry_screen" >
+        </activity>
     </application>
 
 </manifest>

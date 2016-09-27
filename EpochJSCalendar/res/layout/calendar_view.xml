@@ -11,9 +11,14 @@
         android:padding="@dimen/padding_medium"
         tools:context=".CalendarViewActivity" >
         
+        <!-- FGL: Wofür wird der Button gebraucht? 
+                  Er dient für eine Funktionalität, in der wohl eine andere Activity gestartet wird.
+                  Diese Funktionalität ist aber im Beispiel nicht ausprogrammiert.-->
+        <!-- FGL: Mache ein Bild - Ziel ist es "clickbar" zu sein -->
         <ImageView android:id="@+id/calendarToJournalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
             android:text="To WebView"/>
 
         <Button
