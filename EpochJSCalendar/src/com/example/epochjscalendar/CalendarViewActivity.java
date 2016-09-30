@@ -183,10 +183,20 @@ public class CalendarViewActivity extends Activity {
                         		Log.d(tag, "auch getJsSelectedDate() is null");
                         	}else{
                         		Log.d(tag, "getJsSelectedDate() not null");
-                        		//FGL: Achtung: Bei Geräten mit kleiner Auflöscunt erscheint der Button nicht.
-                        		//     Dann gibt es deswegen eine NullPointer Exception.
-                        		//calendarDateButton.setText("TEST");
-                        		calendarDateButton.setText(DateUtils.convertDateToSectionHeaderFormat(objDate.getTime()));
+                        		
+                        		//FGL: Versuch als Lösung für die Fehlermeldung
+                        		//     "CalledFrom WrongThreadException: Only the original thread that created a view hierarchie can touch its views." 
+                        		 runOnUiThread(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                    	//FGL: Achtung: Bei Geräten mit kleiner Auflöscunt erscheint der Button nicht.
+                                 		//     Dann gibt es deswegen eine NullPointer Exception.
+                                 		//calendarDateButton.setText("TEST");
+                                    	 Date objDate = getJsSelectedDate();
+                                 		calendarDateButton.setText(DateUtils.convertDateToSectionHeaderFormat(objDate.getTime()));
+                                     }
+                                 });
+                        		
                         		
                         	}                        	 
                         }else{
