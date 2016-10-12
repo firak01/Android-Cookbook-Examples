@@ -28,6 +28,8 @@ public class SampleWebview extends Activity {
         
 	    //FGL: 20161011 Hiermit wird die WebView andere Links nicht im StandardBrowser öffnen, 
 	    //             sondern in der WebView selbst.
+        //FGL: 20161011 Allerdings hat sich gezeigt, das Java Plugins (also Applets) nicht in einer WebView funktionieren.
+        //               Diese werden in den Domino Applikationen verwendet.
         //"http://192.168.3.104/db/fgl/Project/VideoArchive/via_Application.nsf?Opendatabase"
         //"http://192.168.3.104/db/fgl/VIA/via_Application.nsf?Opendatabase"
         //setUrl("http://google.com");
