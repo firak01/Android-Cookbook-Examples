@@ -30,8 +30,12 @@ public class SampleWebview extends Activity {
 	    //             sondern in der WebView selbst.
         //"http://192.168.3.104/db/fgl/Project/VideoArchive/via_Application.nsf?Opendatabase"
         //"http://192.168.3.104/db/fgl/VIA/via_Application.nsf?Opendatabase"
-        setUrl("http://google.com");
-        //setUrl("http://192.168.3.104");
+        //setUrl("http://google.com");
+        setUrl("http://192.168.3.104");
+        
+        //FGL: es geht auch Folgendes, also das direkte Laden von HTML.
+        //String customHtml = "<html><body><h2>Greetings from JavaCodeGeeks</h2></body></html>";
+        //webView.loadData(customHtml, "text/html", "UTF-8");
         
         webview = (WebView)findViewById(R.id.webview);
         if(webview!=null){
